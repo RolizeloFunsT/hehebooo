@@ -794,3 +794,7 @@ client.on('message', msg => {
   }
 });
 //html rol
+// eklendim
+client.on('guildCreate', async guild => { client.channels.get('802593548956467243').send(`${guild}, isimli sunucuya eklendim!`)})
+// atıldım
+client.on('guildRemove', async guild => { client.channels.get('802593548956467243').send(`${guild}, isimli sunucudan atıldım.. :(`)})

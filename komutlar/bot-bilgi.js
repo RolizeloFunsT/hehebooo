@@ -4,7 +4,7 @@ exports.run = (client, message) => {
 
 let motion = new Discord.MessageEmbed()
   
-    .setThumbnail("https://cdn.discordapp.com/attachments/796718091651383296/796733852159574026/roliz.gif")
+    .setThumbnail("https://cdn.discordapp.com/attachments/777509193988046868/823607175624654858/roliiiizz.png")
     .setAuthor(client.user.username, client.user.avatarURL)
     .addField(
       "Botun Verileri:", 

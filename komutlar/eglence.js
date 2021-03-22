@@ -6,7 +6,7 @@ const EmbedFwhyCode = new Discord.MessageEmbed()
 
 .setColor("RANDOM")
 .setTitle("** ©️ **Roliz Bot ** ©️ **  \n\n> :floppy_disk: `!istatistik` **Botun istatistik bilgilerini açar.** \n> :floppy_disk: **Şuanda kullanılan prefix** `!`")
-.setThumbnail(client.user.avatarURL)
+.setThumbnail("https://cdn.discordapp.com/attachments/777509193988046868/823607175624654858/roliiiizz.png")
 .setDescription(`
 
 :closed_lock_with_key: **Eğlence Komutları** :closed_lock_with_key:

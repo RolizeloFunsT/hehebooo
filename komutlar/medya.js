@@ -7,10 +7,11 @@ exports.run = (client, message) => {
   
   .setColor("RANDOM")
   .setTitle("Roliz")
-  .setThumbnail(client.user.avatarURL)
+  .setThumbnail('https://cdn.discordapp.com/attachments/777509193988046868/823607175624654858/roliiiizz.png')
   .setDescription(`
   Beni Davet Etmek İçin [Tıkla](https://discord.com/oauth2/authorize?client_id=761475156487962625&permissions=8&scope=bot)
   Destek Sunucum İçin [Tıkla](https://discord.gg/TQnNm2UuB4)
+  Websitem İçin [Tıkla](https://rolizapp.glitch.me/)
   Bu komut ${message.author.username} tarafından istendi!
   `)
   

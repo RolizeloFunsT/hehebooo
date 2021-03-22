@@ -778,3 +778,19 @@ client.on('guildMemberAdd', async (member) =>{
 //uptime
 client.on('ready', () => require('quick.db').set('start', Date.now()))
 //uptime
+//js rol
+client.on('message', msg => {
+  if (msg.content.toLowerCase() === 'js') {  // İstediğiniz Komut
+    msg.member.roles.add('802593547664097356'); //Rolü bir yerde bahsedin sonra sağ tıklayıp İD'sini alın
+    msg.reply('Js Rolünü Başarıyla Aldın.'); //Komutu Yazınca cevap ne yazsın?
+  }
+});
+//js rol
+//html rol
+client.on('message', msg => {
+  if (msg.content.toLowerCase() === 'html') {  // İstediğiniz Komut
+    msg.member.roles.add('802593547664097358'); //Rolü bir yerde bahsedin sonra sağ tıklayıp İD'sini alın
+    msg.reply('Html Rolünü Başarıyla Aldın.'); //Komutu Yazınca cevap ne yazsın?
+  }
+});
+//html rol

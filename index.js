@@ -776,3 +776,5 @@ client.on('guildMemberAdd', async (member) =>{
     member.roles.add(otorol) // gelene artık rol vericek.
 })
 //uptime
+client.on('ready', () => require('quick.db').set('start', Date.now()))
+//uptime

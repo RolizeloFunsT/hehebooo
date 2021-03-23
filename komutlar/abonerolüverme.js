@@ -20,13 +20,13 @@ if(!abonerol) return message.channel.send(`Abone rolü ayarlanmamış!`)
   await(abonekisi.roles.add(abonerol))
   
   const embed = new Discord.MessageEmbed()
-  .setTitle(`Abone Rolü Verildi! <a:tik:715858954323755049>  `)
+  .setTitle(`Abone Rolü Verildi! <a:evet:823495530843865139>  `)
   .addField(`Abone Rolünü Veren Kişi:`, `${message.author.tag}`, true)
   .addField(`Abone Rolü Verilen Kişi`, `${user}`, true)
   .setThumbnail(user.avatarURL())
   .setColor(`GOLD`)
   .setFooter(`${client.user.username}  Abone Sistemi`)
-  .setImage("https://media.discordapp.net/attachments/769281758977458176/783299061012234260/standard_21.gif" );
+  .setImage("https://cdn.discordapp.com/attachments/822099305983770626/823499910300958760/standard_4.gif" );
   message.guild.channels.cache.get(abonelog).send(embed)
 }
 

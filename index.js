@@ -265,20 +265,87 @@ client.on("message", async msg => {
 //-------------------- Otorol Sistemi --------------------//
 //-------------------- Otorol Sistemi --------------------//
 
-client.on('guildMemberAdd', async member => {//This command is codare's.
-  
-  let role = await db.fetch(`autorole.${member.guild.id}.role`)
-  let channel = await db.fetch(`autorole.${member.guild.id}.channel`)
-  let system = await db.fetch(`autorole.${member.guild.id}.system`) === true;
-  
-  if (!system) return;
-  // if (!member.user.bot) return; Not: Bunu açarsanız botlara rolü vermez.
-  
-  member.roles.add(role);
-  let ChannelSend = client.channels.cache.get(channel);
-  ChannelSend.send(`Hey ${member.user.username} welcome to my server! I gave you role for members.`)
-
-});
+client.on("guildMemberAdd", member => {
+  var üye = qdb.fetch(`otoroluye_${member.guild.id}`)
+  var bot = qdb.fetch(`otorolbot_${member.guild.id}`)
+  var kanal = qdb.fetch(`otorolkanali_${member.guild.id}`)
+  var embed = qdb.fetch(`otorolmesajtur_${member.guild.id}`)
+  var mesaj = qdb.fetch(`otorolmesaji_${member.guild.id}`)
+  var resim = qdb.fetch(`otorolresim_${member.guild.id}`)
+  var botmesaj = qdb.fetch(`otorolmesajbot_${member.guild.id}`)
+  var ovnırbey = member.guild.owner.id
+  var ovnırcık = client.users.cache.get(ovnırbey)
+ var mesajcık = mesaj
+  .replace("{guild}", `**${member.guild}**`)
+  .replace("{guild}", `**${member.guild}**`)
+  .replace("{user}", `**${member}**`)
+  .replace("{user}", `**${member}**`)
+  if(member.user.bot){
+    var botcuk = member.guild.roles.cache.get(bot)
+    if(!botcuk) return;
+   var fadeaway = mesajcık.replace("{role}", `${botcuk}`).replace("{role}", `${botcuk}`)
+    member.roles.add(botcuk.id)
+    var kanalcık = member.guild.channels.cache.get(kanal)
+    if(!kanalcık) return;
+    if(!mesajcık) return ovnırcık.send(new Discord.MessageEmbed().setColor('BLACK').setDescription(`Dostum, görünüşe göre ${member.guild.name} isimli sunucunda \`otorol rolü\` ve \`otorol kanalı\` ayarlanmış fakat otorol mesajı ayarlanmamış 😕 Otorol mesajını ayarlamadığın için işlemi durdurdum. Discord boş mesaj göndermeme izin vermiyor 😀 Eğer ayarlamak istiyorsan \`otorol yardım mesaj\` komutunu kullanabilir, neyi ayarlayıp ayarlamadığını görmek istiyorsan \`otorol bilgi\` Komutunu kullanabilirsin. İyi Günler! 🥰`).setFooter("🤖 Bunu bir bot'a rol verirken farkettim!"))
+    if(embed === "embed"){
+    if(resim){
+      const embed = new Discord.MessageEmbed()
+      .setColor('BLACK')
+      .setTitle(member.guild)
+      .setDescription(fadeaway)
+      .setImage(resim)
+      .setFooter(`${member.user.username} geldi!`)
+      .setTimestamp()
+      kanalcık.send(embed)
+      };
+    if(!resim){
+     const embed = new Discord.MessageEmbed()
+      .setColor('BLACK')
+      .setTitle(member.guild)
+      .setDescription(fadeaway)
+      .setFooter(`${member.user.username} geldi!`)
+     .setTimestamp()
+      kanalcık.send(embed)
+    };
+    };
+    if(embed !== "embed"){
+    kanalcık.send(fadeaway)
+    };
+    } else {
+   var rolcük = member.guild.roles.cache.get(üye)
+    if(!rolcük) return;
+    member.roles.add(rolcük.id)
+    var fadeaway = mesajcık.replace("{role}", `${rolcük}`).replace("{role}", `${rolcük}`)
+   var kanalcık = member.guild.channels.cache.get(kanal)
+    if(!kanalcık) return;
+    if(!mesajcık) return ovnırcık.send(new Discord.MessageEmbed().setColor('BLACK').setDescription(`Dostum, görünüşe göre ${member.guild.name} isimli sunucunda \`otorol rolü\` ve \`otorol kanalı\` ayarlanmış fakat otorol mesajı ayarlanmamış 😕 Otorol mesajını ayarlamadığın için işlemi durdurdum. Discord boş mesaj göndermeme izin vermiyor 😀 Eğer ayarlamak istiyorsan \`otorol yardım mesaj\` komutunu kullanabilir, neyi ayarlayıp ayarlamadığını görmek istiyorsan \`otorol bilgi\` Komutunu kullanabilirsin. İyi Günler! 🥰`).setFooter("😎 Bunu bir insana rol verirken farkettim!"))
+    if(embed === "embed"){
+      if(resim){
+      const embed = new Discord.MessageEmbed()
+      .setColor('BLACK')
+      .setTitle(member.guild)
+      .setDescription(fadeaway)
+      .setImage(resim)
+      .setFooter(`${member.user.username} geldi!`)
+      .setTimestamp()
+      kanalcık.send(embed)
+      };
+    if(!resim){
+      const embed = new Discord.MessageEmbed()
+      .setColor('BLACK')
+      .setTitle(member.guild)
+      .setDescription(fadeaway)
+      .setFooter(`${member.user.username} geldi!`)
+      .setTimestamp()
+      kanalcık.send(embed)
+    };
+    };
+    if(embed !== "embed"){
+      kanalcık.send(fadeaway)
+    };
+  }
+})
 
 //-------------------- Otorol Sistemi --------------------//
 //-------------------- Otorol Sistemi --------------------//

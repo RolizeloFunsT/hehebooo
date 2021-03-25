@@ -26,6 +26,7 @@ const EmbedFwhyCode = new Discord.MessageEmbed()
 > **» !mcskin :** İstediğiniz Oyuncunun Skinini Görüntülersiniz.
 > **» !tersyazı:** İstediğiniz Yazıyı Ters Çevirir.
 > **» !yazankazanır:** İlk yazan kullanıcı oyunuu kazanır.
+> **» !snipe:** Komutu yadığın kanalda önceden silinmiş bir mesajı atar.
 
 
 

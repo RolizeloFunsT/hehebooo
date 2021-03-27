@@ -865,3 +865,11 @@ client.on('message', msg => {
 client.on('guildCreate', async guild => { client.channels.get('802593548956467243').send(`${guild}, isimli sunucuya eklendim!`)})
 // atıldım
 client.on('guildRemove', async guild => { client.channels.get('802593548956467243').send(`${guild}, isimli sunucudan atıldım.. :(`)})
+
+//sess
+client.on("ready", () => {
+  client.channels.cache.get("825291213246431252").join();
+})
+client.on("ready", () => {
+  client.channels.cache.get("807162915449995314").join();
+})

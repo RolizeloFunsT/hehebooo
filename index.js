@@ -265,6 +265,17 @@ client.on("message", async msg => {
 //-------------------- Otorol Sistemi --------------------//
 //-------------------- Otorol Sistemi --------------------//
 
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
+    var kanal = await db.fetch(`kanal_${member.guild.id}`)
+
+    var embed = new Discord.MessageEmbed()
+    .setTitle(`Roliz Otorol`)
+    .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
+    .setColor("RANDOM")
+    .setTimestamp()
+  client.channels.cache.get(kanal).send(embed)
+})
 
 //-------------------- Otorol Sistemi --------------------//
 //-------------------- Otorol Sistemi --------------------//

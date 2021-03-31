@@ -1,3 +1,5 @@
+const Constants = require('discord.js/src/util/Constants.js')
+Constants.DefaultOptions.ws.properties.$browser = 'Discord iOS'
 //--------------------Bot Ana Dosya--------------------//
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -310,44 +312,34 @@ client.on("guildMemberAdd", member => {
 //-------------------- Afk Sistemi --------------------//
 //-------------------- Afk Sistemi --------------------//
 
-const ms = require("parse-ms");
-const { DiscordAPIError } = require("discord.js");
+client.on("message" , async msg => {
+  
+  if(!msg.guild) return;
+  if(msg.content.startsWith(ayarlar.prefix+"afk")) return; 
+  
+  let afk = msg.mentions.users.first()
+  
+  const kisi = db.fetch(`afkid_${msg.author.id}_${msg.guild.id}`)
+  
+  const isim = db.fetch(`afkAd_${msg.author.id}_${msg.guild.id}`)
+ if(afk){
+   const sebep = db.fetch(`afkSebep_${afk.id}_${msg.guild.id}`)
+   const kisi3 = db.fetch(`afkid_${afk.id}_${msg.guild.id}`)
+   if(msg.content.includes(kisi3)){
 
-client.on("message", async message => {
-  if (message.author.bot) return;
-  if (!message.guild) return;
-  if (message.content.includes(`afk`)) return;
+       msg.reply(`Etiketlediğiniz Kişi Afk \nSebep : ${sebep}`)
+   }
+ }
+  if(msg.author.id === kisi){
 
-  if (await db.fetch(`afk_${message.author.id}`)) {
-    db.delete(`afk_${message.author.id}`);
-    db.delete(`afk_süre_${message.author.id}`);
-
-    const embed = new Discord.MessageEmbed()
-
-      .setColor("GREEN")
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setDescription(`Afk Modundan Başarıyla Çıkıldı.`);
-
-    message.channel.send(embed);
+       msg.reply(`Afk'lıktan Çıktınız`)
+   db.delete(`afkSebep_${msg.author.id}_${msg.guild.id}`)
+   db.delete(`afkid_${msg.author.id}_${msg.guild.id}`)
+   db.delete(`afkAd_${msg.author.id}_${msg.guild.id}`)
+    msg.member.setNickname(isim)
+    
   }
-
-  var USER = message.mentions.users.first();
-  if (!USER) return;
-  var REASON = await db.fetch(`afk_${USER.id}`);
-
-  if (REASON) {
-    let süre = await db.fetch(`afk_süre_${USER.id}`);
-    let timeObj = ms(Date.now() - süre);
-
-    const afk = new Discord.MessageEmbed()
-
-      .setColor("RED")//
-      .setDescription(
-        `**BU KULLANICI AFK**\n\n**Afk Olan Kullanıcı :** \`${USER.tag}\`\n**Afk Süresi :** \`${timeObj.hours}saat\` \`${timeObj.minutes}dakika\` \`${timeObj.seconds}saniye\`\n**Sebep :** \`${REASON}\``
-      );
-
-    message.channel.send(afk);
-  }
+  
 });
 
 //-------------------- Afk Sistemi --------------------//

@@ -156,7 +156,6 @@ client.on("message", async msg => {
       "mk",
       "mq",
       "aq",
-      "ak",
       "amq"
     ];
     if (kufur.some(word => msg.content.includes(word))) {
@@ -207,7 +206,6 @@ client.on("messageUpdate", msg => {
       "mk",
       "mq",
       "aq",
-      "ak",
       "amq",
       "daşşak",
       "oç",

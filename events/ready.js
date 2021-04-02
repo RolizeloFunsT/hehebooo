@@ -21,7 +21,10 @@ module.exports = client => {
     "Yenilendi!",
     "Yeni Özellikler!",
     "Made By FunsT",
-    "!medya | 🎉"
+    "!medya | 🎉",
+    "Otorol Geldi!",
+    "Sayaç Eklendi!",
+    "Reklam Engel Geliştirildi!"
     
   ];
 

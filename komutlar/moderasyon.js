@@ -20,16 +20,16 @@ const EmbedFwhyCode = new Discord.MessageEmbed()
 > **» !küfür-engel**
 > **» !link-kısalt** *BAKIMDA*
 > **» !modlog**
-> **» !otorol** *BAKIMDA*
+> **» !otorol**
 > **» !ping**
 > **» !prefix**
 > **» !reklam-engel**
-> **» !rol-al** *BAKIMDA*
-> **» !rol-ver** *BAKIMDA*
-> **» !rol-bilgi** *BAKIMDA*
+> **» !rol-al** 
+> **» !rol-ver** 
+> **» !rol-bilgi**
 > **» !sa-as**
-> **» !sayaç-ayarla** *BAKIMDA*
-> **» !sayaç-kanal-ayarla** *BAKIMDA*
+> **» !sayaç-ayarla** 
+> **» !sayaç-kanal-ayarla**
 > **» !sunucu-bilgi**
 > **» !sunucu-kur**
 > **» !temizle**

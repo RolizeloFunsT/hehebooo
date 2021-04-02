@@ -378,96 +378,33 @@ client.on("message", async msg => {
 //-------------------- Reklam Engel Sistemi --------------------//
 //-------------------- Reklam Engel Sistemi --------------------//
 
-client.on("message", async message => {
-  let uyarisayisi = await db.fetch(`reklamuyari_${message.author.id}`);
-  let reklamkick = await db.fetch(`kufur_${message.guild.id}`);
-  let kullanici = message.member;
-  if (!reklamkick) return;
-  if (reklamkick == "Açık") {
-    const reklam = [
-      "discord.app",
-      "discord.gg",
-      ".com",
-      ".net",
-      ".xyz",
-      ".tk",
-      ".pw",
-      ".io",
-      ".me",
-      ".gg",
-      "www.",
-      "https",
-      "http",
-      ".gl",
-      ".org",
-      ".com.tr",
-      ".biz",
-      ".party",
-      ".rf.gd",
-      ".az",
-      ".hub"
-    ];
-    if (reklam.some(word => message.content.toLowerCase().includes(word))) {
-      if (!message.member.hasPermission("BAN_MEMBERS")) {
-        message.delete();
-        db.add(`reklamuyari_${message.author.id}`, 1); //uyarı puanı ekleme
-        if (uyarisayisi === null) {
-          let uyari = new Discord.RichEmbed()
-            .setColor("BLACK")//
-            .setTitle(" Reklam-Engel!")
-            .setDescription(
-              `<@${message.author.id}> Reklam Yapmayı Kes! Bu İlk Uyarın! (1/3)`
-            )
-            .setFooter(client.user.username, client.user.avatarURL)
-            .setTimestamp();
-          message.channel.send(uyari);
-        }
-        if (uyarisayisi === 1) {
-          let uyari = new Discord.RichEmbed()
-            .setColor("BLACK")
-            .setTitle("Reklam-Engel!")
-            .setDescription(
-              `<@${message.author.id}> Reklam Yapmayı Kes! Bu İkinci Uyarın! (2/3)`
-            )
-            .setFooter(client.user.username, client.user.avatarURL)
-            .setTimestamp();
-          message.channel.send(uyari);
-        }
-        if (uyarisayisi === 2) {
-          message.delete();
-          await kullanici.kick({
-            reason: `Reklam-Engel Sistemi!`
-          });
-          let uyari = new Discord.RichEmbed()
-            .setColor("BLACK")
-            .setTitle("Reklam-Engel!")
-            .setDescription(
-              `<@${message.author.id}> Reklam Yaptığı İçin Sunucudan Atıldı! (3/3)`
-            )
-            .setFooter(client.user.username, client.user.avatarURL)
-            .setTimestamp();
-          message.channel.send(uyari);
-        }
-        if (uyarisayisi === 3) {
-          message.delete();
-          await kullanici.ban({
-            reason: ` Reklam-Engel Sistemi!`
-          });
-          db.delete(`reklamuyari_${message.author.id}`);
-          let uyari = new Discord.RichEmbed()//
-            .setColor("BLACK")
-            .setTitle("Reklam Kick Sistemi")
-            .setDescription(
-              `<@${message.author.id}> Atıldıktan Sonra Tekrar Reklam Yaptığı İçin Sunucudan Yasaklandı!`
-            )
-            .setFooter(client.user.username, client.user.avatarURL)
-            .setTimestamp();
-          message.channel.send(uyari);
-        }
-      }
-    }
-  }
-});
+client.on("message", msg => {
+let db = require('quick.db')
+ let e = db.fetch(`reklamengel_${msg.guild.id}`)
+if(e === "aktif"){  
+      const reklam = [".com", ".net", ".xyz", ".tk", ".pw", ".io", ".me", ".gg", "www.", "https", "http", ".gl", ".org", ".com.tr", ".biz", "net", ".rf.gd", ".az", ".party", "discord.gg",];
+        if (reklam.some(word => msg.content.includes(word))) {
+          try {
+            if (!msg.member.hasPermission("BAN_MEMBERS")) {
+                  msg.delete();
+                         const batusuyar = new Discord.MessageEmbed()
+.setColor('RED')
+.setTitle("Reklam Engel Filtresi")
+.setDescription(`Sunucuda Reklam Engel Filtresi Açık Reklam Yapamazsın <@${msg.authorid}>`)
+                         
+    
+                    return msg.channel.send(batusuyar).then(msg => msg.delete(3000));
+   
+ 
+  msg.delete(3000);                              
+ 
+            }              
+          } catch(err) {
+            console.log(err);
+          }
+        }}
+else return;
+    });
 
 //-------------------- Reklam Engel Sistemi --------------------//
 //-------------------- Reklam Engel Sistemi --------------------//

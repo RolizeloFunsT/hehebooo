@@ -524,35 +524,25 @@ client.on("message", async message => {
 //-------------------- Prefix Sistemi --------------------//
 
 //sayaç
-client.on("message", async message => {
-  if (!message.guild) return;
-
-  if (db.has(`sayac_${message.guild.id}`) === true) {
-    if (db.fetch(`sayac_${message.guild.id}`) <= message.guild.members.cache.size) {
-      const embed = new Discord.MessageEmbed()
-        .setTitle(`Tebrikler ${message.guild.name}!`)
-        .setDescription(`Başarıyla \`${db.fetch(`sayac_${message.guild.id}`)}\` kullanıcıya ulaştık! Sayaç sıfırlandı!`)
-        .setColor("RANDOM");
-      message.channel.send(embed);
-      message.guild.owner.send(embed);
-      db.delete(`sayac_${message.guild.id}`);
-    }
-  }
-});
-client.on("guildMemberRemove", async member => {
-  const channel = db.fetch(`sKanal_${member.guild.id}`);
-  if (db.has(`sayac_${member.guild.id}`) == false) return;
-  if (db.has(`sKanal_${member.guild.id}`) == false) return;
-
-    member.guild.channels.cache.get(channel).send(`**${member.user.tag}** Sunucudan ayrıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.memberCount}\` üye kaldı!`);
-});
-client.on("guildMemberAdd", async member => {
-  const channel = db.fetch(`sKanal_${member.guild.id}`);
-  if (db.has(`sayac_${member.guild.id}`) == false) return;
-  if (db.has(`sKanal_${member.guild.id}`) == false) return;
-
-    member.guild.channels.cache.get(channel).send(`**${member.user.tag}** Sunucuya Katıldı :tada:! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.memberCount}\` üye kaldı!`);
-});
+client.on("guildMemberAdd", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`**${member} Sunucuya katıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+if(hedef <= member.guild.memberCount){
+  client.channels.cache.get(kanal).send(`Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
+  qdb.delete(`sayackanali_${member.guild.id}`)
+  qdb.delete(`sayachedef_${member.guild.id}`)
+}
+})
+client.on("guildMemberRemove", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`**${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+})
 //dm-hg
 client.on("guildMemberAdd", member =>{
   const hg = new Discord.MessageEmbed()

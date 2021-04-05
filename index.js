@@ -738,3 +738,9 @@ exports.help = {
   name: 'çekiliş'
 };// codare
 //çekiliş son
+//otoisim
+client.on('guildMemberAdd', member => {  
+  var arezreiz = qdb.fetch(`otoisim_${member.guild.id}`)
+  if(!arezreiz) return;
+  member.setNickname(arezreiz)
+ })

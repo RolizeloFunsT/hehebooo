@@ -28,13 +28,13 @@ const EmbedFwhyCode = new Discord.MessageEmbed()
 > **» !rol-ver** 
 > **» !rol-bilgi**
 > **» !sa-as**
-> **» !sayaç-ayarla** 
-> **» !sayaç-kanal-ayarla**
+> **» !sayaç** 
 > **» !sunucu-bilgi**
 > **» !sunucu-kur**
 > **» !temizle**
-> **» !üye-durum** *BAKIMDA*
+> **» !üye-durum**
 > **» !yavaş-mod**
+> **» !otoisim**
 
 ** :gear: **Bilgilendirme** :gear: **
 Bu komut ${message.author.username} tarafından istendi! 

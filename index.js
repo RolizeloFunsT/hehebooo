@@ -744,4 +744,3 @@ client.on('guildMemberAdd', member => {
   if(!arezreiz) return;
   member.setNickname(arezreiz)
  })
-//ayarlamalı hg

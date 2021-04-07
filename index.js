@@ -1,5 +1,3 @@
-const Constants = require('discord.js/src/util/Constants.js')
-Constants.DefaultOptions.ws.properties.$browser = 'Discord iOS'
 //--------------------Bot Ana Dosya--------------------//
 const Discord = require('discord.js');
 const client = new Discord.Client();

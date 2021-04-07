@@ -742,3 +742,37 @@ client.on('guildMemberAdd', member => {
   if(!arezreiz) return;
   member.setNickname(arezreiz)
  })
+////----------------------- HEM ETİKET HEMDE TAG ROL KISMI -----------------------\\\\
+client.on("userUpdate", async function(oldUser, newUser) { // kod codaredan alınıp editlenmiştir!
+    const guildID = "766662305877327958"//sunucu
+    const roleID = "806981855450497024"//taglırolü
+    const tag = "§"//tag
+    const chat = '807238626596749393'// chat
+    const log2 = '807226532854104105' // log kanalı
+  
+    const guild = client.guilds.cache.get(guildID)
+    const role = guild.roles.cache.find(roleInfo => roleInfo.id === roleID)
+    const member = guild.members.cache.get(newUser.id)
+    const embed = new Discord.MessageEmbed().setAuthor(member.displayName, member.user.avatarURL({ dynamic: true })).setColor('#ff0000').setTimestamp().setFooter('♆');
+    if (newUser.username !== oldUser.username) {
+        if (oldUser.username.includes(tag) && !newUser.username.includes(tag)) {
+            member.roles.remove(roleID)
+            client.channels.cache.get(log2).send(embed.setDescription(` ${newUser} isminden \`§\` çıakrtarak ailemizden ayrıldı!`))
+        } else if (!oldUser.username.includes(tag) && newUser.username.includes(tag)) {
+            member.roles.add(roleID)
+            client.channels.cache.get(chat).send(`<a:evtt:826862315668111470>Tebrikler, ${newUser} tag alarak ailemize katıldı ona sıcak bir **'Merhaba!'** diyin.(${tag})`)
+            client.channels.cache.get(log2).send(embed.setDescription(`  ${newUser} ismine \`§\` alarak ailemize katıldı`))
+        }
+    }
+   if (newUser.discriminator !== oldUser.discriminator) {
+        if (oldUser.discriminator == "0099" && newUser.discriminator !== "0099") {
+            member.roles.remove(roleID)
+            client.channels.cache.get(log2).send(embed.setDescription(`  <@!' + newUser + '> etiketinden \`§\` çıakrtarak ailemizden ayrıldı!`))
+        } else if (oldUser.discriminator !== "0099" && newUser.discriminator == "0099") {
+            member.roles.add(roleID)
+            client.channels.cache.get(log2).send(embed.setDescription(`  <@!' + newUser + '> etiketine \`§\` alarak ailemize katıldı`))
+            client.channels.cache.get(chat).send(`<a:dikkat:826862322974720022>Tebrikler, ${newUser} tag alarak ailemize katıldı ona sıcak bir **'Merhaba!'** diyin.(#0099)`)
+        }
+    }
+  
+  })
